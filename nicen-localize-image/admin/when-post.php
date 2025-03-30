@@ -11,7 +11,6 @@
  *
  * @param $post_id integer 文章ID
  * @param bool $flag 是否需要记录日志
- *
  * */
 function nicen_make_when_save_post( $post_id, $flag = true ) {
 
@@ -33,14 +32,21 @@ function nicen_make_when_save_post( $post_id, $flag = true ) {
 			return;
 		}
 
-		//匹配所有图片
+		$post->post_content = str_replace( '></img>', "/>", $post->post_content );
+
+		/* 匹配所有图片 */
 		preg_match_all( '/<img(?:.*?)src="(.*?)"(?:.*?)\/?>/', $post->post_content, $match );
 
-		/*如果没有图片*/
-		if ( empty( $match ) ) {
-			return;
-		}
 
+		/* 如果没有图片 */
+		if ( empty( $match[1] ) ) {
+			/*匹配单引号规则*/
+			preg_match_all( "/<img(?:.*?)src='(.*?)'(?:.*?)\/?>/", $post->post_content, $match );
+			/*如果没有图片*/
+			if ( empty( $match[1] ) ) {
+				return;
+			}
+		}
 
 		$images   = array_unique( $match[1] ); //去重
 		$site_url = site_url(); //站点url

@@ -5,7 +5,7 @@ Donate link: https://nicen.cn/donate
 Requires at least: 5.6
 Tested up to: 6.6
 Requires PHP: 7.3
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,11 @@ Github：https://github.com/friend-nicen/nicen-localize-image
 Gitee：https://gitee.com/friend-nicen/nicen-localize-image
 
 == Changelog ==
+
+v1.4.7
+
+1. 文件移除外部cdn引用，所有静态文件全部内置
+2. 新增自动匹配部分站点的referer规则
 
 v1.4.6
 
